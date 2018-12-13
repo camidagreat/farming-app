@@ -1,0 +1,15 @@
+<div class="card card-body mt-5">
+  <h2 class="my-4 text-center"> Location Search</h2>
+  <h5 class="mb-5 text-center">Enter the address of your farm location</h5>
+
+  <%= form_tag(new_farm_location_path, method: :get) do %>
+    <div class="form-group mx-auto d-block">
+      <%= text_field_tag :location_search, nil,{placeholder: "search for your location...", class: "form-control w-50 mx-auto"} %>
+    </div>
+
+    <div>
+      <%= submit_tag "Search", class: "btn btn-outline-dark mb-5 d-block w-25 mx-auto" %>
+    </div>
+  <% end %>
+
+</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FarmingApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDl9Xvml9nUYzG62Bbnxo9OA5EcD-wfQMA'%>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <%= yield(:head_tags) %>
+  </head>
+
+  <body>
+    <div class="background">
+      <div class="mb-5">
+        <% if buyer_signed_in? %>
+            <%= render 'buyer_header' %>
+        <% elsif farmer_signed_in? %>
+            <%= render 'farmer_header' %>
+        <% else %>
+            <%= render 'header' %>
+        <% end %>
+
+        <% if notice %>
+          <div class="alert alert-success alert-dismissible m-0">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <%= notice %>
+          </div>
+        <% end %>
+        <% if alert %>
+          <div class="alert alert-danger alert-dismissible m-0">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <%= alert %>
+          </div>
+        <% end %>
+
+        <div class="grey-background">
+          <div class="container">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render 'footer' %>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+    <script>
+        document.addEventListener("DOMContentLoaded", initMap2);
+    </script>
+<% end %>
+
+<script>
+  if (navigator.geolocation && <%= current_buyer.home_lat %> == null) {
+     navigator.geolocation.getCurrentPosition(function (position) {
+        console.log(position.coords.latitude, position.coords.longitude);
+          document.getElementById('location_lat').value = position.coords.latitude;
+          document.getElementById('location_lng').value = position.coords.longitude;
+     });
+  }
+</script>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card card-body mt-5">
+      <button class="btn btn-primary w-100 m-2" id="use_current_location" >Use my current location</button>
+      <h2 class="my-4 text-center">Set your location</h2>
+      <h5 class="mb-5 text-center">Put the pin close to where you want to find farms</h5>
+
+      <%= form_tag(buyer_app_set_buyer_location_path, method: :get) do %>
+
+        <div class="field form-group">
+          <%= label_tag 'latitude' %>
+          <%= text_field_tag :home_lat, @buyer_lat, {class:"form-control", id: "location_lat", value: @buyer_lat} %>
+        </div>
+
+        <div class="field form-group">
+          <%= label_tag 'longitude' %>
+          <%= text_field_tag :home_lng, @buyer_lng, {class:"form-control", id: "location_lng", value: @buyer_lng} %>
+        </div>
+
+        <div class="field form-group">
+          <%= label_tag "address" %>
+          <%= text_field_tag :home_location, @buyer_location, {class:"form-control", id: "location_address", value: @buyer_location} %>
+        </div>
+
+        <div>
+          <%= submit_tag "Save Location", class: "btn btn-outline-dark mb-5 d-block mx-auto" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="mx-auto my-5" id="map2"></div>
+  </div>
+
+</div>

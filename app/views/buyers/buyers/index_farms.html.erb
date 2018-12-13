@@ -1,0 +1,33 @@
+<% provide :head_tags do %>
+  <meta name='turbolinks-visit-control' content='reload'>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        initMap(<%= @farm_locations[-1].location_lat %>, <%= @farm_locations[-1].location_lng %>)
+    });
+  </script>
+<% end %>
+<h1 class="text-center my-5">Find a Farm</h1>
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="d-flex flex-wrap">
+      <% for farm_location in @farm_locations do %>
+        <a class="w-100 mb-2" href="/buyer_app/show_farmer/<%=farm_location.farmer.id%>">
+          <div class="card card-body location_option hover_map_change w-100">
+            <h2><%= farm_location.name %></h2>
+            <div class="d-none location_lat"><%=farm_location.location_lat%></div>
+            <div class="d-none location_lng"><%=farm_location.location_lng%></div>
+            <p><strong><%= farm_location.farmer.first_name %> <%= farm_location.farmer.last_name %></strong></p>
+            <p><strong><%= farm_location.location_address %></strong></p>
+            <p><%= farm_location.farm_description %></p>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="mx-auto w-100" id="map"></div>
+  </div>
+
+</div>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @farmer_product.product.variety %> <%= @farmer_product.product.name %>
+</p>
+
+<p>
+  <strong>Farmer:</strong>
+  <%= @farmer_product.farmer_id %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @farmer_product.size %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= humanized_money_with_symbol @farmer_product.price %>
+</p>
+
+<%= link_to 'Edit', edit_farmer_product_path(@farmer_product) %> |
+<%= link_to 'Back', farmer_products_path %>

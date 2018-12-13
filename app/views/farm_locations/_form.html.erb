@@ -1,0 +1,73 @@
+<%= form_with(model: farm_location, local: true) do |form| %>
+  <% if farm_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(farm_location.errors.count, "error") %> prohibited this farm_location from being saved:</h2>
+
+      <ul>
+      <% farm_location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @place_options %>
+    <h3 class="text-center">Select one of the following:</h3>
+    <% for place in @place_options do %>
+      <div class="card card-body location_option day" value="<%=place%>">
+        <%= place.formatted_address %>
+        <p class="d-none" id="location_address_info"><%= place.formatted_address %></p>
+        <p class="d-none" id="location_lat_info"><%= place.lat %></p>
+        <p class="d-none" id="location_lng_info"><%= place.lng %></p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="field form-group mt-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class:"form-control"%>
+  </div>
+
+  <div class="field form-group d-none">
+    <%= form.label :location_address %>
+    <%= form.text_field :location_address, class:"form-control", id: "location_address"%>
+  </div>
+
+  <div class="field form-group d-none">
+    <%= form.label :location_lat %>
+    <%= form.text_field :location_lat, class:"form-control", id: "location_lat"%>
+  </div>
+
+  <div class="field form-group d-none">
+    <%= form.label :location_lng %>
+    <%= form.text_field :location_lng, class:"form-control", id: "location_lng"%>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :open_time %>
+    <%= form.datetime_select :open_time, class:"form-control"%>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :close_time %>
+    <%= form.datetime_select :close_time, class:"form-control"%>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, class:"form-control"%>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class:"form-control"%>
+  </div>
+
+  <div class="field form-group">
+    <%= form.hidden_field :farmer_id, class:"form-control", value: current_farmer.id%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:"btn btn-primary" %>
+  </div>
+<% end %>

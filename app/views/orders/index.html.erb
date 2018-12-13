@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Orders</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Pick up location</th>
+      <th>Farmer</th>
+      <th>Buyer</th>
+      <th>Has been picked up</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.pick_up_location_name %></td>
+        <td><%= order.farmer.first_name %> <%= order.farmer.last_name %></td>
+        <td><%= order.buyer.first_name %> <%= order.buyer.last_name %></td>
+        <td><%= order.has_been_picked_up %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path, class:"btn btn-primary" %>

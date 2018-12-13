@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Farm location:</strong>
+  <%= @inventory.farm_location_id %>
+</p>
+
+<p>
+  <strong>Finish time:</strong>
+  <%= @inventory.finish_time %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @inventory.start_time %>
+</p>
+
+<%= link_to 'Edit', edit_inventory_path(@inventory) %> |
+<%= link_to 'Back', inventories_path %>

@@ -1,0 +1,19 @@
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="d-flex flex-wrap">
+      <% for farm_location in @farm_locations do %>
+        <div class="card card-body">
+          <h2><%= farm_location.name %></h2>
+          <p><%= farm_location.farm_description %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div>
+    </div>
+  </div>
+  
+</div>

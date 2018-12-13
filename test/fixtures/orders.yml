@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location_id: 1
+  pick_up_lat: 1.5
+  pick_up_lng: 1.5
+  pick_up_location_name: MyString
+  farmer_id: 1
+  buyer_id: 1
+  has_been_picked_up: false
+
+two:
+  location_id: 1
+  pick_up_lat: 1.5
+  pick_up_lng: 1.5
+  pick_up_location_name: MyString
+  farmer_id: 1
+  buyer_id: 1
+  has_been_picked_up: false

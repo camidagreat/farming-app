@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Farmer Products</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Size</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @farmer_products.each do |farmer_product| %>
+      <tr>
+        <td><%= farmer_product.product.variety %> <%= farmer_product.product.name %></td>
+        <td><%= farmer_product.size %></td>
+        <td><%= humanized_money_with_symbol farmer_product.price %></td>
+        <td><%= link_to 'Show', farmer_product %></td>
+        <td><%= link_to 'Edit', edit_farmer_product_path(farmer_product) %></td>
+        <td><%= link_to 'Destroy', farmer_product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Farmer Product', new_farmer_product_path, class:"btn btn-primary" %>

@@ -1,0 +1,22 @@
+// Place all the styles related to the farm_locations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.location_option {
+  &:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+  }
+}
+
+.location-highlighted {
+  background-color: lightgreen !important;
+}
+
+#map {
+  @media (min-width: 768px) {
+    position: fixed !important;
+    top: 30vh !important;
+    width: 40vw !important;
+  }
+}

@@ -1,0 +1,70 @@
+<%= form_with(model: order, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if farmer_signed_in? %>
+    <div class="field form-group">
+      <%= form.label :farmer_id %>
+      <%= form.hidden_field :farmer_id, class:"form-control", value: current_farmer.id%>
+    </div>
+  <% elsif buyer_signed_in? %>
+    <div class="field form-group d-none">
+      <%= form.label :farmer_id %>
+      <%= form.number_field :farmer_id, class:"form-control", value: @farmer.id%>
+    </div>
+  <% end %>
+
+  <% if buyer_signed_in? %>
+
+    <% for product in @farmer_products do %>
+
+      <% if @order_products && @order_products.where(farmer_product: product.id).first %>
+        <% product_amount = @order_products.where(farmer_product: product.id).first.amount %>
+      <% else %>
+        <% product_amount = "" %>
+      <% end %>
+
+      <div class="field form-group row">
+        <%= form.number_field product.id, value: product_amount%> &nbsp;&nbsp;&nbsp;&nbsp;<%=product.size.pluralize%> of <%=product.product.variety%> <%= product.product.name %>
+      </div>
+    <% end %>
+
+    <div class="field form-group d-none">
+      <%= form.label :pick_up_lat %>
+      <%= form.text_field :pick_up_lat, class:"form-control", value: @farmer.farm_locations[0].location_lat%>
+    </div>
+
+    <div class="field form-group d-none">
+      <%= form.label :pick_up_lng %>
+      <%= form.text_field :pick_up_lng, class:"form-control", value: @farmer.farm_locations[0].location_lng%>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label "Pick up location" %>
+      <%= form.text_field :pick_up_location_name, class:"form-control", value: @farmer.farm_locations[0].location_address%>
+    </div>
+    <div class="field form-group">
+      <%= form.hidden_field :buyer_id, class:"form-control", value: current_buyer.id%>
+    </div>
+  <% end %>
+
+  <% if farmer_signed_in? %>
+    <div class="field form-group">
+      <%= form.check_box :has_been_picked_up%>
+      <%= form.label :has_been_picked_up %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit class:"btn btn-primary" %>
+  </div>
+<% end %>

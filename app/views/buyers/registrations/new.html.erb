@@ -1,0 +1,43 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="pt-5">
+    <div class="card card-body sign-in-box mx-auto">
+      <%= devise_error_messages! %>
+
+      <h2 class="text-center">Buyer Sign up</h2>
+
+      <div class="field form-group">
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control"%>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control"%>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"%>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", autocapitalize: "off", class: "form-control"%>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"%>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: "btn btn-outline-dark" %>
+      </div>
+      <%= render "buyers/shared/links" %>
+    </div>
+  </div>
+
+<% end %>

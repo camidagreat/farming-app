@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Inventories</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Farm location</th>
+      <th>Finish time</th>
+      <th>Start time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventories.each do |inventory| %>
+      <tr>
+        <td><%= inventory.farm_location_id %></td>
+        <td><%= inventory.finish_time %></td>
+        <td><%= inventory.start_time %></td>
+        <td><%= link_to 'Show', inventory %></td>
+        <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
+        <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inventory', new_inventory_path, class:"btn btn-primary" %>

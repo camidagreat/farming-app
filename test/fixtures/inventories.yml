@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  farm_location_id: 1
+  finish_time: 2018-12-06 13:59:56
+  start_time: 2018-12-06 13:59:56
+
+two:
+  farm_location_id: 1
+  finish_time: 2018-12-06 13:59:56
+  start_time: 2018-12-06 13:59:56

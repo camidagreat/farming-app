@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="row mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="text-center"><%= @farmer.farm_locations[0].name %> </br></h3>
+          <div class="row">
+            <strong class="col-1"><i class="fa fa-map-marker-alt">&nbsp;&nbsp;</i> </strong><div class="col-10"><%= @farmer.farm_locations[0].location_address%></div></br>
+          </div>
+          <div class="row mb-2">
+            <strong class="col-1"><i class="fa fa-phone">&nbsp;&nbsp;</i> </strong><div class="col-10"><%= @farmer.farm_locations[0].phone_number%></div></br>
+          </div>
+          <div class="m-auto">
+            <p>
+              <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=400x300&markers=size:small%7Ccolor:red%7C#{@farmer.farm_locations[0].location_lat},#{@farmer.farm_locations[0].location_lng}&key=AIzaSyDl9Xvml9nUYzG62Bbnxo9OA5EcD-wfQMA", alt: "Map" %>
+            </p>
+          </div>
+        </div>
+        <%= link_to("Make an order", new_order_path(:farmer_id => @farmer.id), class: "btn btn-primary d-block mx-auto my-4 mx-2 w-100") %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h2 class="text-center my-5"><%=@farmer.first_name%>'s products</h2>
+    <ul>
+      <% for product in @products do %>
+        <li><h5><%= product.product.variety %> <%= product.product.name %></h5></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

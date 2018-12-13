@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @farm_location.name %>
+</p>
+
+<p>
+  <strong>Location address:</strong>
+  <%= @farm_location.location_address %>
+</p>
+
+<p>
+  <strong>Location lat:</strong>
+  <%= @farm_location.location_lat %>
+</p>
+
+<p>
+  <strong>Location lng:</strong>
+  <%= @farm_location.location_lng %>
+</p>
+
+<p>
+  <strong>Open time:</strong>
+  <%= @farm_location.open_time %>
+</p>
+
+<p>
+  <strong>Close time:</strong>
+  <%= @farm_location.close_time %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @farm_location.phone_number %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @farm_location.email %>
+</p>
+
+<p>
+  <strong>Farmer:</strong>
+  <%= @farm_location.farmer_id %>
+</p>
+
+<%= link_to 'Edit', edit_farm_location_path(@farm_location) %> |
+<%= link_to 'Back', farm_locations_path %>

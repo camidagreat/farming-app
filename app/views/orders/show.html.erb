@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-6">
+    <p>
+      <strong>Pick up lat:</strong>
+      <%= @order.pick_up_lat %>
+    </p>
+
+    <p>
+      <strong>Pick up lng:</strong>
+      <%= @order.pick_up_lng %>
+    </p>
+
+    <p>
+      <strong>Pick up location name:</strong>
+      <%= @order.pick_up_location_name %>
+    </p>
+
+    <p>
+      <strong>Farmer:</strong>
+      <%= @order.farmer.first_name %> <%= @order.farmer.last_name %>
+    </p>
+
+    <p>
+      <strong>Buyer:</strong>
+      <td><%= @order.buyer.first_name %> <%= @order.buyer.last_name %></td>
+    </p>
+
+    <p>
+      <strong>Has been picked up:</strong>
+      <%= @order.has_been_picked_up %>
+    </p>
+  </div>
+  <div class="col-md-6">
+    <h3 class="text-center py-5">Order items</h3>
+    <ul>
+      <% for product in @order.order_products do %>
+        <% farmer_product = product.farmer_product %>
+        <li>
+          <%= product.amount.to_i %>
+          <%= farmer_product.size.pluralize %>
+          <%= farmer_product.product.variety %>
+          <%= farmer_product.product.name %>
+           =>
+          <%= humanized_money_with_symbol (farmer_product.price * product.amount)%>
+          </br>
+        </li>
+      <% end %>
+      </br>
+      </br>
+      <strong>Total : <%= humanized_money_with_symbol @total_cost%></strong>
+    </ul>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
