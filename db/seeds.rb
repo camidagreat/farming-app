@@ -181,7 +181,7 @@ product_data = [
                   ["Grapes", "Concord"],
                   ["Fennel", nil],
                   ["Ferns", "Fiddlehead"],
-
+                ]
 for product in product_data do
   Product.create(name: product[0], variety: product[1])
 end
